@@ -1,6 +1,8 @@
 package com.hand;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,6 +23,8 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+// import com.google.gson.JsonObject;
 
 public class ExamThree {
 
@@ -49,12 +53,13 @@ class HttpRead extends Thread{
 			isr.close();
 			is.close();
 			System.out.println(buffer.toString());
-			String[] strs= buffer.toString().split(",");
-			strs[0]=strs[0].substring(21);
-			strs[strs.length-1]=strs[strs.length-1].substring(0,2);
+			String[] firstStr= buffer.toString().split("\"");
+			System.out.println(firstStr[1]);
+			String[] strs=firstStr[1].split(",");
 //			System.out.println("\n"+strs[0]);
 			
 			CreatXml(strs);//创建xml文件
+			// CreatJson(strs);//创建json文件
 			
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -116,4 +121,31 @@ class HttpRead extends Thread{
 			}
 			
 	}
+
+	// //创建json文件
+	//  public void CreatJson(String[] strs){
+	//  	//基于gson.jar导入包创建json对象
+	//  			JsonObject obj=new JsonObject();
+	//  			obj.addProperty("name", strs[0]);
+	//  			obj.addProperty("open", strs[1]);
+	//  			obj.addProperty("close", strs[2]);
+	//  			obj.addProperty("current", strs[3]);
+	//  			obj.addProperty("high", strs[4]);
+	//  			obj.addProperty("low", strs[5]);
+				
+	//  			System.out.println("创建的json对象：");
+	//  			System.out.println(obj.toString());
+	//  			try {
+	//  				FileWriter fw=new FileWriter("hand.json");
+	//  				BufferedWriter bw=new BufferedWriter(fw);
+	//  				bw.write(obj.toString());
+	//  				bw.flush();
+	//  				bw.close();
+	//  				fw.close();
+	//  			} catch (IOException e) {
+	//  				// TODO Auto-generated catch block
+	//  				e.printStackTrace();
+	//  			}
+				
+	//  }
 }

@@ -41,7 +41,7 @@ class ReadByGet extends Thread{
 	public void fileCopyByBuff(InputStream in){
 		try {
 			BufferedInputStream bis=new BufferedInputStream(in);
-			OutputStream fos=new FileOutputStream("http_target.pdf");
+			OutputStream fos=new FileOutputStream("http_target2.pdf");
 			BufferedOutputStream bos=new BufferedOutputStream(fos);
 			
 			byte[] input =new byte[1024];
